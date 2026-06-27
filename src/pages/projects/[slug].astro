@@ -1,0 +1,65 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<Layout title={project.data.title}>
+  <article class="max-w-3xl mx-auto py-8">
+    <!-- Breadcrumb -->
+    <a href="/#proyectos" class="text-sm font-mono text-zinc-500 hover:text-emerald-400 transition flex items-center gap-1 mb-8">
+      &larr; Volver a Proyectos
+    </a>
+
+    <header class="border-b border-zinc-800 pb-8 mb-8">
+      <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest block mb-2">
+        {project.data.role}
+      </span>
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-100">
+        {project.data.title}
+      </h1>
+      <p class="text-zinc-400 mt-4 text-lg leading-relaxed">
+        {project.data.description}
+      </p>
+
+      <div class="flex flex-wrap gap-4 mt-6 items-center">
+        <span class="text-zinc-500 text-xs font-mono">Stack clave:</span>
+        {project.data.techStack.map((tech) => (
+          <span class="text-xs font-mono bg-zinc-900 border border-zinc-800 text-zinc-300 px-3 py-1 rounded">
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      <div class="flex gap-4 mt-8">
+        {project.data.githubBackend && (
+          <a href={project.data.githubBackend} target="_blank" class="bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 hover:border-zinc-700 text-zinc-200 px-4 py-2 rounded text-sm font-semibold transition flex items-center gap-2">
+            Ver Backend en GitHub
+          </a>
+        )}
+        {project.data.githubFrontend && (
+          <a href={project.data.githubFrontend} target="_blank" class="bg-zinc-900 hover:bg-zinc-850 border border-zinc-800 hover:border-zinc-700 text-zinc-200 px-4 py-2 rounded text-sm font-semibold transition flex items-center gap-2">
+            Ver Frontend en GitHub
+          </a>
+        )}
+      </div>
+    </header>
+
+    <!-- Contenido del Markdown -->
+    <div class="prose prose-invert prose-emerald max-w-none text-zinc-300 leading-relaxed space-y-6 
+      prose-headings:text-zinc-100 prose-headings:font-semibold prose-headings:font-mono prose-headings:tracking-tight
+      prose-h3:text-lg prose-h3:mt-8 prose-h3:border-l-2 prose-h3:border-emerald-500 prose-h3:pl-3">
+      <Content />
+    </div>
+  </article>
+</Layout>

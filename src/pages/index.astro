@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+---
+
+<Layout title="Especialista Backend & Arquitectura de Software">
+  <!-- Hero Section -->
+  <section class="py-12 md:py-24 border-b border-zinc-900">
+    <div class="max-w-3xl">
+      <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest bg-emerald-950/40 border border-emerald-800/40 px-3 py-1 rounded-full">
+        Disponible para Proyectos y Consultoría
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mt-6 text-zinc-100">
+        Diseño sistemas transaccionales estables y automatizo flujos documentales complejos.
+      </h1>
+      <p class="text-zinc-400 mt-6 text-lg leading-relaxed">
+        Soy un Desarrollador Backend enfocado en arquitectura limpia, gobernanza de datos y procesamiento inteligente de información no estructurada. Ayudo a clínicas, hospitales y empresas a digitalizar sus operaciones de forma segura y eficiente.
+      </p>
+      <div class="flex gap-4 mt-8">
+        <a href="#proyectos" class="bg-emerald-500 hover:bg-emerald-400 text-zinc-950 px-5 py-2.5 rounded font-semibold text-sm transition">
+          Ver Casos de Estudio
+        </a>
+        <a href="/contact" class="border border-zinc-800 hover:border-zinc-700 bg-zinc-900/50 px-5 py-2.5 rounded font-semibold text-sm text-zinc-300 hover:text-zinc-100 transition">
+          Hablemos de tu Proyecto
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios (Enfoque de Negocio y Consultoría) -->
+  <section id="servicios" class="py-16 border-b border-zinc-900">
+    <h2 class="text-2xl font-semibold text-zinc-100 font-mono tracking-tight flex items-center gap-2">
+      <span class="text-emerald-400">//</span> Servicios de Consultoría Técnica
+    </h2>
+    <div class="grid md:grid-cols-3 gap-6 mt-10">
+      <div class="bg-zinc-900/40 border border-zinc-800/60 p-6 rounded-lg hover:border-zinc-700/60 transition">
+        <div class="w-8 h-8 rounded bg-emerald-950 flex items-center justify-center text-emerald-400 mb-4 font-mono font-bold text-sm">
+          01
+        </div>
+        <h3 class="text-lg font-semibold text-zinc-200">Sistemas Transaccionales</h3>
+        <p class="text-zinc-400 text-sm mt-3 leading-relaxed">
+          Diseño y refactorización de bases de datos para sistemas de inventarios, facturación y registros que requieran control estricto de concurrencia y cero pérdida de datos.
+        </p>
+      </div>
+
+      <div class="bg-zinc-900/40 border border-zinc-800/60 p-6 rounded-lg hover:border-zinc-700/60 transition">
+        <div class="w-8 h-8 rounded bg-emerald-950 flex items-center justify-center text-emerald-400 mb-4 font-mono font-bold text-sm">
+          02
+        </div>
+        <h3 class="text-lg font-semibold text-zinc-200">Pipelines de Digitalización</h3>
+        <p class="text-zinc-400 text-sm mt-3 leading-relaxed">
+          Estructuración de motores automáticos que extraen, validan y normalizan información de archivos PDF planos o escaneos hacia bases de datos indexables mediante IA y OCR.
+        </p>
+      </div>
+
+      <div class="bg-zinc-900/40 border border-zinc-800/60 p-6 rounded-lg hover:border-zinc-700/60 transition">
+        <div class="w-8 h-8 rounded bg-emerald-950 flex items-center justify-center text-emerald-400 mb-4 font-mono font-bold text-sm">
+          03
+        </div>
+        <h3 class="text-lg font-semibold text-zinc-200">Refactor de Arquitecturas</h3>
+        <p class="text-zinc-400 text-sm mt-3 leading-relaxed">
+          Migración estructurada de sistemas monolíticos desordenados o aplicaciones locales hacia APIs web desacopladas bajo principios de modularidad y alta mantenibilidad.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proyectos Reales (Casos de Estudio) -->
+  <section id="proyectos" class="py-16 border-b border-zinc-900">
+    <div class="flex justify-between items-end">
+      <div>
+        <h2 class="text-2xl font-semibold text-zinc-100 font-mono tracking-tight flex items-center gap-2">
+          <span class="text-emerald-400">//</span> Casos de Estudio Reales
+        </h2>
+        <p class="text-zinc-400 text-sm mt-2">Sistemas funcionales diseñados y construidos para resolver problemas operativos reales.</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 mt-10">
+      {projects.map((project) => (
+        <article class="bg-zinc-900/30 border border-zinc-800/80 p-6 rounded-lg flex flex-col justify-between hover:border-emerald-500/30 hover:bg-zinc-900/50 transition duration-300">
+          <div>
+            <span class="text-xs font-mono text-emerald-400/80 uppercase tracking-wider">{project.data.role}</span>
+            <h3 class="text-xl font-bold text-zinc-100 mt-2 hover:text-emerald-400 transition">
+              <a href={`/projects/${project.slug}`}>{project.data.title}</a>
+            </h3>
+            <p class="text-zinc-400 text-sm mt-3 leading-relaxed line-clamp-3">
+              {project.data.description}
+            </p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              {project.data.techStack.map((tech) => (
+                <span class="text-[11px] font-mono bg-zinc-800 text-zinc-300 px-2.5 py-0.5 rounded border border-zinc-700/50">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div class="mt-6 pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs">
+            <a href={`/projects/${project.slug}`} class="text-emerald-400 font-semibold hover:underline">
+              Ver Análisis Técnico &rarr;
+            </a>
+            {project.data.githubBackend && (
+              <a href={project.data.githubBackend} target="_blank" class="text-zinc-500 hover:text-zinc-300 flex items-center gap-1 font-mono">
+                [codebase]
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Sobre Mí -->
+  <section id="about" class="py-16">
+    <div class="grid md:grid-cols-3 gap-8 items-start">
+      <div class="md:col-span-1">
+        <h2 class="text-2xl font-semibold text-zinc-100 font-mono tracking-tight flex items-center gap-2">
+          <span class="text-emerald-400">//</span> Perfil Técnico
+        </h2>
+      </div>
+      <div class="md:col-span-2 text-zinc-400 space-y-4 text-base leading-relaxed">
+        <p>
+          Mi enfoque de ingeniería se resume en construir software predecible, con alta integridad referencial y libre de complejidades innecesarias. Tengo experiencia en modelado y optimización de bases de datos relacionales, manejo estricto de transacciones concurrentes y desacoplamiento de sistemas legacy.
+        </p>
+        <p>
+          En el área de automatización, me especializo en estructurar flujos para procesar datos no estructurados en memoria (como streams binarios de archivos PDF) integrando modelos inteligentes de visión multimodal para agilizar tareas operativas repetitivas.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

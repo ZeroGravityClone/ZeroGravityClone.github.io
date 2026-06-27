@@ -1,0 +1,46 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} | Consultor Backend & Arquitectura</title>
+  </head>
+  <body class="bg-zinc-950 text-zinc-100 font-sans selection:bg-emerald-500 selection:text-zinc-950">
+    <header class="border-b border-zinc-800/80 sticky top-0 bg-zinc-950/80 backdrop-blur z-50">
+      <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="font-mono text-emerald-400 font-semibold tracking-tight hover:text-emerald-300 transition">
+          ~/zerogravity
+        </a>
+        <nav class="flex gap-6 text-sm font-medium text-zinc-400">
+          <a href="/#proyectos" class="hover:text-zinc-100 transition">Proyectos</a>
+          <a href="/#servicios" class="hover:text-zinc-100 transition">Servicios</a>
+          <a href="/#about" class="hover:text-zinc-100 transition">Sobre Mí</a>
+          <a href="/contact" class="hover:text-zinc-100 transition text-emerald-400">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-12">
+      <slot />
+    </main>
+
+    <footer class="border-t border-zinc-900 py-8 mt-20 text-center text-xs text-zinc-600">
+      <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p>© {new Date().getFullYear()} ZeroGravityClone. Desarrollado con Astro & Tailwind CSS.</p>
+        <div class="flex gap-4">
+          <a href="https://github.com/ZeroGravityClone" target="_blank" class="hover:text-zinc-400 transition">GitHub</a>
+          <a href="/contact" class="hover:text-zinc-400 transition">Contacto</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
