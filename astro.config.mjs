@@ -7,6 +7,6 @@ export default defineConfig({
   integrations: [tailwind()],
   output: 'static',
   build: {
-    assets: 'assets'
+    assets: 'assets' // Evita el bloqueo de carpetas ocultas (_astro) en GitHub Pages
   }
 });

@@ -1,22 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 
-const projects = await getCollection('projects');
+const projects: CollectionEntry<'projects'>[] = await getCollection('projects');
 ---
 
-<Layout title="Especialista Backend & Arquitectura de Software">
+<Layout title="Especialistas en Backend & Arquitectura de Datos">
   <!-- Hero Section -->
   <section class="py-12 md:py-24 border-b border-zinc-900">
     <div class="max-w-3xl">
       <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest bg-emerald-950/40 border border-emerald-800/40 px-3 py-1 rounded-full">
-        Disponible para Proyectos y Consultoría
+        Consultoría e Ingeniería de Sistemas Activa
       </span>
       <h1 class="text-4xl md:text-5xl font-bold tracking-tight mt-6 text-zinc-100">
-        Diseño sistemas transaccionales estables y automatizo flujos documentales complejos.
+        Diseñamos sistemas transaccionales estables y automatizamos flujos documentales complejos.
       </h1>
       <p class="text-zinc-400 mt-6 text-lg leading-relaxed">
-        Soy un Desarrollador Backend enfocado en arquitectura limpia, gobernanza de datos y procesamiento inteligente de información no estructurada. Ayudo a clínicas, hospitales y empresas a digitalizar sus operaciones de forma segura y eficiente.
+        En **Datacore Engineering** nos enfocamos en el diseño de arquitectura limpia, la gobernanza de datos relacionales y el procesamiento de información no estructurada en memoria. Ayudamos a clínicas, centros de salud y empresas en crecimiento a escalar sus sistemas de datos de forma predecible y segura.
       </p>
       <div class="flex gap-4 mt-8">
         <a href="#proyectos" class="bg-emerald-500 hover:bg-emerald-400 text-zinc-950 px-5 py-2.5 rounded font-semibold text-sm transition">
@@ -41,7 +41,7 @@ const projects = await getCollection('projects');
         </div>
         <h3 class="text-lg font-semibold text-zinc-200">Sistemas Transaccionales</h3>
         <p class="text-zinc-400 text-sm mt-3 leading-relaxed">
-          Diseño y refactorización de bases de datos para sistemas de inventarios, facturación y registros que requieran control estricto de concurrencia y cero pérdida de datos.
+          Diseño y refactorización de bases de datos para sistemas de inventarios, facturación y registros que requieran control estricto de concurrencia, bloqueo de condiciones de carrera y cero pérdida de datos.
         </p>
       </div>
 
@@ -51,7 +51,7 @@ const projects = await getCollection('projects');
         </div>
         <h3 class="text-lg font-semibold text-zinc-200">Pipelines de Digitalización</h3>
         <p class="text-zinc-400 text-sm mt-3 leading-relaxed">
-          Estructuración de motores automáticos que extraen, validan y normalizan información de archivos PDF planos o escaneos hacia bases de datos indexables mediante IA y OCR.
+          Estructuración de motores de ingesta que procesan, validan y normalizan información de archivos PDF planos o escaneos directamente en memoria hacia bases de datos estructuradas mediante modelos multimodales e IA.
         </p>
       </div>
 
@@ -61,7 +61,7 @@ const projects = await getCollection('projects');
         </div>
         <h3 class="text-lg font-semibold text-zinc-200">Refactor de Arquitecturas</h3>
         <p class="text-zinc-400 text-sm mt-3 leading-relaxed">
-          Migración estructurada de sistemas monolíticos desordenados o aplicaciones locales hacia APIs web desacopladas bajo principios de modularidad y alta mantenibilidad.
+          Migración estructurada de sistemas monolíticos desordenados o aplicaciones locales hacia APIs web desacopladas bajo principios de modularidad, alta mantenibilidad y trazabilidad histórica mediante registros de auditoría.
         </p>
       </div>
     </div>
@@ -72,9 +72,9 @@ const projects = await getCollection('projects');
     <div class="flex justify-between items-end">
       <div>
         <h2 class="text-2xl font-semibold text-zinc-100 font-mono tracking-tight flex items-center gap-2">
-          <span class="text-emerald-400">//</span> Casos de Estudio Reales
+          <span class="text-emerald-400">//</span> Casos de Estudio Destacados
         </h2>
-        <p class="text-zinc-400 text-sm mt-2">Sistemas funcionales diseñados y construidos para resolver problemas operativos reales.</p>
+        <p class="text-zinc-400 text-sm mt-2">Sistemas de backend e ingesta construidos para resolver cuellos de botella operativos reales en el sector médico.</p>
       </div>
     </div>
 
@@ -90,7 +90,7 @@ const projects = await getCollection('projects');
               {project.data.description}
             </p>
             <div class="flex flex-wrap gap-2 mt-4">
-              {project.data.techStack.map((tech) => (
+              {project.data.techStack.map((tech: string) => (
                 <span class="text-[11px] font-mono bg-zinc-800 text-zinc-300 px-2.5 py-0.5 rounded border border-zinc-700/50">
                   {tech}
                 </span>
@@ -112,20 +112,20 @@ const projects = await getCollection('projects');
     </div>
   </section>
 
-  <!-- Sobre Mí -->
+  <!-- Sobre Nosotros / Sobre Mí -->
   <section id="about" class="py-16">
     <div class="grid md:grid-cols-3 gap-8 items-start">
       <div class="md:col-span-1">
         <h2 class="text-2xl font-semibold text-zinc-100 font-mono tracking-tight flex items-center gap-2">
-          <span class="text-emerald-400">//</span> Perfil Técnico
+          <span class="text-emerald-400">//</span> Sobre Mí
         </h2>
       </div>
       <div class="md:col-span-2 text-zinc-400 space-y-4 text-base leading-relaxed">
         <p>
-          Mi enfoque de ingeniería se resume en construir software predecible, con alta integridad referencial y libre de complejidades innecesarias. Tengo experiencia en modelado y optimización de bases de datos relacionales, manejo estricto de transacciones concurrentes y desacoplamiento de sistemas legacy.
+          Como Ingeniero de Software detrás de **Datacore Engineering**, mi enfoque metodológico se centra en la construcción de software predecible, con alta integridad referencial y libre de complejidades innecesarias. Cuento con experiencia en el diseño y optimización de bases de datos relacionales, manejo robusto de transacciones concurrentes, y en el desacoplamiento estructurado de sistemas monolíticos legacy.
         </p>
         <p>
-          En el área de automatización, me especializo en estructurar flujos para procesar datos no estructurados en memoria (como streams binarios de archivos PDF) integrando modelos inteligentes de visión multimodal para agilizar tareas operativas repetitivas.
+          En el área de automatización de datos, diseño arquitecturas capaces de procesar flujos complejos directamente en memoria (como streams binarios de archivos PDF) integrando modelos inteligentes de visión multimodal y validaciones estrictas antes del almacenamiento final, acelerando de forma segura flujos que tradicionalmente requerían la intervención constante de operarios humanos.
         </p>
       </div>
     </div>
